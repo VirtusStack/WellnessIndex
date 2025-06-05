@@ -41,23 +41,23 @@
  <div class="card-body fs-4">
 <div class="mb-3"> 
 <label>Weight (kg):</label> 
-<input type="number" name="weight" class="form-control" required value="<?php if(isset($_POST['weight'])) echo $_POST['weight']; ?>">
+<input type="number" name="weight" step="0.1" class="form-control" required value="<?php if(isset($_POST['weight'])) echo $_POST['weight']; ?>">
   </div>
   <div class="mb-3">
  <label>Height (cm):</label>
-<input type="number" name="height" class="form-control" required value="<?php if(isset($_POST['height'])) echo $_POST['height']; ?>">
+<input type="number" name="height" step="0.1" class="form-control" required value="<?php if(isset($_POST['height'])) echo $_POST['height']; ?>">
 </div>
 <div class="d-flex gap-2">
   <button type="submit" name="calculate" class="btn btn-primary">Calculate BMI</button>
- <a href ="BMI.php" class="btn btn-secondary">Reset</a><!-- Reset as page reload -->
+ <a href ="BMI.php" class="btn btn-secondary">Reset</a>  <!-- Reset as page reload -->
 </div>
 </form>
 <?php
 $bmi = '';
 $class = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['calculate'])) {
-    $weight = $_POST['weight'];
-    $height = $_POST['height'];
+    $weight = floatval($_POST['weight']);
+    $height = floatval($_POST['height']);
 
     if ($height == 0) {
         $bmi = "Height cannot be zero.";
@@ -129,7 +129,7 @@ echo "</div>";
 </div>
 <h2 class="text-primary g-4">BMI as a measure</h2>
 <p>BMI is a calculated measure of a person's body weight (in kilograms) divided by the square of their height (in meters).<br>
-<strong> BMI = weight (kg) / height (m)2 </strong></br>
+<strong> BMI = weight (kg) / height (m)2 </strong> <br>
 BMI does not distinguish between fat, muscle, and bone mass. These all influence a person's weight. BMI does not indicate what types of fat people have. BMI also does not indicate where in the body that people carry fat.</p>
 <h2 class="text-primary g-4">BMI for individual health</h4>
 <p>BMI is one measure that an individual and their health care provider can use to help determine chronic disease risk. For a more complete picture of an individual's health, consider BMI with other factors:</p>
